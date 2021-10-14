@@ -11,7 +11,7 @@ public class ValidatorTest {
 
     @Test
     public void validate() {
-        boolean result = validator.validate("10 -2.0 3.0 4.1");
+        boolean result = validator.validate("10, -2.0 - 3.0 4.1");
         Assert.assertTrue(result);
     }
 }

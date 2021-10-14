@@ -14,7 +14,7 @@ public class StringFilePathReaderTest {
     StringReader<String> stringReader = new StringFilePathReaderImpl();
 
     @Test
-    public void readTest() throws CubeException {
+    public void testRead() throws CubeException {
         List<String> expected = new ArrayList<>();
         expected.add("first");
         expected.add("1 2 3");

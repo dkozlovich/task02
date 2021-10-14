@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class ValidatorImpl implements Validator {
 
-    private static final String POINT_AND_EDGE_REGEX = "(([+-]?([0-9]*[.])?[0-9]+ ){3})(\\d*.\\d*)";
+    private static final String POINT_AND_EDGE_REGEX = "(([+-]?([0-9]*[.])?[0-9]+(\\s|,\\s|\\s-\\s)){3})(\\d*.\\d*)";
 
     @Override
     public boolean validate(String pointAndEdge) {
