@@ -1,8 +1,8 @@
 package com.epam.task02.parser.impl;
 
 import com.epam.task02.parser.StringParser;
-import com.epam.task02.validator.Validator;
-import com.epam.task02.validator.impl.ValidatorImpl;
+import com.epam.task02.validator.CubeParametersValidator;
+import com.epam.task02.validator.impl.CubeParametersValidatorImpl;
 
 import java.util.stream.Stream;
 
@@ -15,9 +15,9 @@ public class StringParserImpl implements StringParser {
 
         String[] stringArray = string.split(DELIMITER_REGEX);
         double[] parameters;
-        Validator validator = new ValidatorImpl();
+        CubeParametersValidator cubeParametersValidator = new CubeParametersValidatorImpl();
         parameters = Stream.of(stringArray)
-                .filter(s -> validator.isValid(s))
+                .filter(s -> cubeParametersValidator.isValid(s))
                 .mapToDouble(Double::parseDouble)
                 .toArray();
         if (parameters.length != 4) {

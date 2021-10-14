@@ -1,6 +1,6 @@
 package com.epam.task02.validator;
 
-public interface Validator {
+public interface CubeParametersValidator {
 
     boolean isValid(String pointAndEdge);
 }
