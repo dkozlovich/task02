@@ -18,7 +18,6 @@ public class StringParserImpl implements StringParser {
         Validator validator = new ValidatorImpl();
         parameters = Stream.of(stringArray)
                 .filter(s -> validator.isValid(s))
-                .peek(System.out::println)
                 .mapToDouble(Double::parseDouble)
                 .toArray();
         if (parameters.length != 4) {
