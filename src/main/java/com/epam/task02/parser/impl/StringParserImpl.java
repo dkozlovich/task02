@@ -17,9 +17,13 @@ public class StringParserImpl implements StringParser {
         double[] parameters;
         Validator validator = new ValidatorImpl();
         parameters = Stream.of(stringArray)
-                .filter(validator::validate)
+                .filter(s -> validator.isValid(s))
+                .peek(System.out::println)
                 .mapToDouble(Double::parseDouble)
                 .toArray();
+        if (parameters.length != 4) {
+            parameters = null;
+        }
         return parameters;
     }
 }

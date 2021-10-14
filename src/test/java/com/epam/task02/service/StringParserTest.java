@@ -18,9 +18,10 @@ public class StringParserTest {
         expected[2] = -1;
         expected[3] = 100;
         String toParse = "4, 6, -1, 100";
-        double[] result = new double[4];
+        double[] result;
         StringParser stringParser = new StringParserImpl();
         result = stringParser.parseToCoordinatesAndEdge(toParse);
         Assert.assertArrayEquals(expected,result,0.000001d);
     }
+
 }
