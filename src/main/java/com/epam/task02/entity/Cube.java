@@ -4,12 +4,12 @@ import com.epam.task02.util.IdGenerator;
 
 public class Cube {
 
-    private long id;
+    private long cubeId;
     private Point center;
     private double edge;
 
     public Cube(Point center, double edge) {
-        this.id = IdGenerator.generate();
+        this.cubeId = IdGenerator.generate();
         this.center = center;
         this.edge = edge;
     }
@@ -30,7 +30,7 @@ public class Cube {
         this.edge = edge;
     }
 
-    public long getId() {
-        return id;
+    public long getCubeId() {
+        return cubeId;
     }
 }
