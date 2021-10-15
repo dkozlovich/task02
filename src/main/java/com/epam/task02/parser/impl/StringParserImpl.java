@@ -14,14 +14,9 @@ public class StringParserImpl implements StringParser {
     public double[] parseToCoordinatesAndEdge(String string) {
 
         String[] stringArray = string.split(DELIMITER_REGEX);
-        double[] parameters;
-        CubeParametersValidator cubeParametersValidator = new CubeParametersValidatorImpl();
-        parameters = Stream.of(stringArray)
-                .filter(s -> cubeParametersValidator.isValid(s))
-                .mapToDouble(Double::parseDouble)
-                .toArray();
-        if (parameters.length != 4) {
-            parameters = null;
+        double[] parameters = new double[stringArray.length];
+        for (int i = 0; i < parameters.length; i++) {
+            parameters[i] = Double.parseDouble(stringArray[i]);
         }
         return parameters;
     }
