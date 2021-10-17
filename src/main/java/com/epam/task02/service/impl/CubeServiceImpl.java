@@ -19,7 +19,7 @@ public class CubeServiceImpl implements CubeService {
     }
 
     @Override
-    public double findSquare(Cube cube) {
+    public double findSurfaceArea(Cube cube) {
         double square = 6 * Math.pow(cube.getEdge(),2);
         return square;
     }

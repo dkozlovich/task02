@@ -1,10 +1,6 @@
 package com.epam.task02.parser.impl;
 
 import com.epam.task02.parser.StringParser;
-import com.epam.task02.validator.CubeParametersValidator;
-import com.epam.task02.validator.impl.CubeParametersValidatorImpl;
-
-import java.util.stream.Stream;
 
 public class StringParserImpl implements StringParser {
 

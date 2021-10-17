@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -23,7 +22,7 @@ public class StringFilePathReaderImpl implements StringReader<String> {
             logger.error("File " + pathToFile + " is not found.");
             throw new CubeException("File " + pathToFile + " is not found.");
         }
-        List<String> lines = new ArrayList<>();
+        List<String> lines;
         try(Stream<String> stringStream = Files.lines(Path.of(pathToFile))) {
             lines = stringStream.collect(Collectors.toList());
         } catch (IOException e) {

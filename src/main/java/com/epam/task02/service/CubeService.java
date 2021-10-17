@@ -4,6 +4,6 @@ import com.epam.task02.entity.Cube;
 
 public interface CubeService {
 
-    double findSquare(Cube cube);
+    double findSurfaceArea(Cube cube);
     double findVolume(Cube cube);
 }

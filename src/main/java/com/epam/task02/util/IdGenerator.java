@@ -4,7 +4,7 @@ public class IdGenerator {
 
     private static long counter;
 
-    public static long generate() {
+    public static long generateId() {
         return counter++;
     }
 

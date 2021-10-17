@@ -18,11 +18,11 @@ public class CubeServiceTest {
     }
 
     @Test
-    public void testFindSquare() {
+    public void testFindSurfaceArea() {
         double edge = 3;
         double expected = 54;
         Cube cube = CubeFactory.CreateCube(new Point(1,1,1),edge);
-        double result = cubeService.findSquare(cube);
+        double result = cubeService.findSurfaceArea(cube);
         Assert.assertEquals(expected,result,0.000001d);
     }
 
