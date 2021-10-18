@@ -7,7 +7,7 @@ import org.junit.Test;
 
 public class CubeParametersValidatorTest {
 
-    CubeParametersValidator cubeParametersValidator = new CubeParametersValidatorImpl();
+    CubeParametersValidator cubeParametersValidator = CubeParametersValidatorImpl.getInstance();
 
     @Test
     public void validate() {

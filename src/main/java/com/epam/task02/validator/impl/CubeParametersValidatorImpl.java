@@ -7,7 +7,20 @@ import java.util.regex.Pattern;
 
 public class CubeParametersValidatorImpl implements CubeParametersValidator {
 
-    private static final String COORDINATES_AND_EDGE_REGEX = "(([+-]?([0-9]*[.])?[0-9]+(\\s|,\\s|\\s-\\s)){3})(\\d*.\\d*)";
+    private static CubeParametersValidator instance;
+
+    private CubeParametersValidatorImpl() {
+
+    }
+
+    public static CubeParametersValidator getInstance() {
+        if (instance == null) {
+            instance = new CubeParametersValidatorImpl();
+        }
+        return instance;
+    }
+
+    private static final String COORDINATES_AND_EDGE_REGEX = "(([+-]?([0-9]*[.])?[0-9]+(\\s|,\\s|\\s-\\s)){3})(\\[0-9]*.\\[0-9]*)";
 
     @Override
     public boolean isValid(String coordinatesAndEdge) {
