@@ -20,7 +20,7 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
         return instance;
     }
 
-    private static final String COORDINATES_AND_EDGE_REGEX = "(([+-]?([0-9]*[.])?[0-9]+(\\s|,\\s|\\s-\\s)){3})(\\[0-9]*.\\[0-9]*)";
+    private static final String COORDINATES_AND_EDGE_REGEX = "(([+-]?([0-9]*[.])?[0-9]+(,\\s|\\s-\\s|\\s)){3})([0-9]*[.])?[0-9]*";
 
     @Override
     public boolean isValid(String coordinatesAndEdge) {

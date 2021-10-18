@@ -2,17 +2,23 @@ package com.epam.task02.entity;
 
 import com.epam.task02.util.IdGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cube {
 
     private long cubeId;
     private Point center;
     private double edge;
+    List<Point> points = new ArrayList<>(8);
 
     public Cube(Point center, double edge) {
         this.cubeId = IdGenerator.generateId();
         this.center = center;
         this.edge = edge;
     }
+
+
 
     public Point getCenter() {
         return center;

@@ -1,6 +1,5 @@
 package com.epam.task02.warehouse;
 
-import com.epam.task02.exception.CubeException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -27,18 +27,32 @@ public class StringParserImpl implements StringParser {
         return null;
     }
 
+//    @Override
+//    public List<double[]> parseToCoordinatesAndEdge(List<String> list) {
+//
+//        List<double[]> listArray = new ArrayList<>();
+//
+//        for (int i = 0; i < list.size(); i++) {
+//            if (cubeParametersValidator.isValid(list.get(i))) {
+//                String[] stringArray = list.get(i).split(DELIMITER_REGEX);
+//                double[] parameters = new double[stringArray.length];
+//                for (int j = 0; j < parameters.length; j++) {
+//                    parameters[j] = Double.parseDouble(stringArray[j]);
+//                }
+//                listArray.add(parameters);
+//            }
+//        }
+//        return listArray;
+//    }
+//}
+
     @Override
     public List<double[]> parseToCoordinatesAndEdge(List<String> list) {
 
         List<double[]> listArray = new ArrayList<>();
-
         for (int i = 0; i < list.size(); i++) {
-            if (cubeParametersValidator.isValid(list.get(i))) {
-                String[] stringArray = list.get(i).split(DELIMITER_REGEX);
-                double[] parameters = new double[stringArray.length];
-                for (int j = 0; j < parameters.length; j++) {
-                    parameters[j] = Double.parseDouble(stringArray[j]);
-                }
+            double[] parameters = parseToCoordinatesAndEdge(list.get(i));
+            if (parameters != null) {
                 listArray.add(parameters);
             }
         }

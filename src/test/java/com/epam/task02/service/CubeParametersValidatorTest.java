@@ -11,7 +11,7 @@ public class CubeParametersValidatorTest {
 
     @Test
     public void validate() {
-        boolean result = cubeParametersValidator.isValid("10, -2.0 - 3.0 4.1");
+        boolean result = cubeParametersValidator.isValid("10, -12.2189 - 3.11 36.88");
         Assert.assertTrue(result);
     }
 }
