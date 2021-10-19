@@ -3,7 +3,6 @@ package com.epam.task02.repository.impl;
 import com.epam.task02.entity.Cube;
 import com.epam.task02.repository.CubeRepository;
 import com.epam.task02.repository.CubeSpecification;
-import com.epam.task02.validator.impl.CubeParametersValidatorImpl;
 
 import java.util.*;
 
