@@ -10,7 +10,7 @@ public class Cube {
     private long cubeId;
     private Point center;
     private double edge;
-    List<Point> points = new ArrayList<>(8);
+    List<Point> points = new ArrayList<>();
 
     public Cube(Point center, double edge) {
         this.cubeId = IdGenerator.generateId();
@@ -18,7 +18,13 @@ public class Cube {
         this.edge = edge;
     }
 
+    public List<Point> getPoints() {
+        return points;
+    }
 
+    public void setPoints(List<Point> points) {
+        this.points = points;
+    }
 
     public Point getCenter() {
         return center;

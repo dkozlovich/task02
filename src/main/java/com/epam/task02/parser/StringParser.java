@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface StringParser {
 
-    double[] parseToCoordinatesAndEdge(String string);
+    double[] parseToCenterAndEdge(String string);
 
-    List<double[]> parseToCoordinatesAndEdge(List<String> list);
+    List<double[]> parseToCenterAndEdge(List<String> list);
 
 }

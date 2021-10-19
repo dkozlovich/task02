@@ -30,5 +30,5 @@ public interface CubeRepository {
 
     List<Cube> query(CubeSpecification specification);
 
-    List<Cube> sort(Comparator<?extends Cube> comparator);
+    List<Cube> sort(Comparator<Cube> comparator);
 }

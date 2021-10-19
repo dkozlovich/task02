@@ -85,7 +85,9 @@ public class CubeRepositoryImpl implements CubeRepository {
     }
 
     @Override
-    public List<Cube> sort(Comparator<? extends Cube> comparator) {
-        return null;
+    public List<Cube> sort(Comparator<Cube> comparator) {
+        cubes.sort(comparator);
+        return cubes;
     }
+
 }

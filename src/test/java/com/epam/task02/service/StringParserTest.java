@@ -6,13 +6,12 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class StringParserTest {
 
     @Test
-    public void testParseToCoordinatesAndEdge1() {
+    public void testParseToCenterAndEdge1() {
 
         double[] expected = new double[4];
         expected[0] = 4.0;
@@ -22,22 +21,22 @@ public class StringParserTest {
         String toParse = "4, 6, -1, 100";
         double[] result;
         StringParser stringParser = new StringParserImpl();
-        result = stringParser.parseToCoordinatesAndEdge(toParse);
-        Assert.assertArrayEquals(expected,result,0.000001d);
+        result = stringParser.parseToCenterAndEdge(toParse);
+        Assert.assertArrayEquals(expected, result,0.000001d);
     }
 
     @Test
-    public void testParseToCoordinatesAndEdge2() {
+    public void testParseToCenterAndEdge2() {
 
         String toParse = "4, 6j, -1, 100";
         StringParser stringParser = new StringParserImpl();
-        double[] result = stringParser.parseToCoordinatesAndEdge(toParse);
+        double[] result = stringParser.parseToCenterAndEdge(toParse);
         Assert.assertNull(result);
     }
 
 
     @Test
-    public void testParseToCoordinatesAndEdge3() {
+    public void testParseToCenterAndEdge3() {
         double[] expected1 = {4.0, 6.0, -1, 100};
         double[] expected2 = {5.0, 64, -11, 10};
         double[] expected3 = {15.0, 27, 1, 2000};
@@ -53,14 +52,14 @@ public class StringParserTest {
         toParse.add(s2);
         toParse.add(s3);
         StringParser stringParser = new StringParserImpl();
-        List<double[]> result = stringParser.parseToCoordinatesAndEdge(toParse);
+        List<double[]> result = stringParser.parseToCenterAndEdge(toParse);
         for (int i = 0; i < result.size(); i++) {
-            Assert.assertArrayEquals(expected.get(i),result.get(i),0.000001d);
+            Assert.assertArrayEquals(expected.get(i), result.get(i),0.000001d);
         }
     }
 
     @Test
-    public void testParseToCoordinatesAndEdge4() {
+    public void testParseToCenterAndEdge4() {
         double[] expected1 = {4.0, 6.0, -1, 100};
         double[] expected2 = {5.0, 64, -11, 10};
         List<double[]> expected = new ArrayList<>();
@@ -76,9 +75,9 @@ public class StringParserTest {
         toParse.add(s3);
         toParse.add(s4);
         StringParser stringParser = new StringParserImpl();
-        List<double[]> result = stringParser.parseToCoordinatesAndEdge(toParse);
+        List<double[]> result = stringParser.parseToCenterAndEdge(toParse);
         for (int i = 0; i < result.size(); i++) {
-            Assert.assertArrayEquals(expected.get(i),result.get(i),0.000001d);
+            Assert.assertArrayEquals(expected.get(i), result.get(i),0.000001d);
         }
     }
 }
