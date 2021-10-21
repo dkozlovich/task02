@@ -7,9 +7,12 @@ import java.util.List;
 
 public class CubeFactory {
 
-//    public static Cube createByPoints(List<Point> point) {
-//
-//    }
+    public static Cube createByPoints(List<Point> points) {
+        Cube cube = new Cube(points);
+//        cube.setCenter();
+//        cube.setEdge();
+        return cube;
+    }
 
     public static Cube CreateCube(Point center, double edge) {
         Cube cube = new Cube(center, edge);

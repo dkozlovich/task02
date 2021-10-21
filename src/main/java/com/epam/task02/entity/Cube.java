@@ -1,16 +1,20 @@
 package com.epam.task02.entity;
 
+import com.epam.task02.observer.CubeEvent;
+import com.epam.task02.observer.CubeObserver;
+import com.epam.task02.observer.Observable;
 import com.epam.task02.util.IdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cube {
+public class Cube implements Observable {
 
     private long cubeId;
     private Point center;
     private double edge;
     List<Point> points = new ArrayList<>();
+    private final List<CubeObserver> observers = new ArrayList<>();
 
     public Cube(Point center, double edge) {
         this.cubeId = IdGenerator.generateId();
@@ -18,12 +22,13 @@ public class Cube {
         this.edge = edge;
     }
 
-    public List<Point> getPoints() {
-        return points;
+    public Cube(List<Point> points) {
+        this.points = points;
+        this.cubeId = IdGenerator.generateId();
     }
 
-    public void setPoints(List<Point> points) {
-        this.points = points;
+    public List<Point> getPoints() {
+        return points;
     }
 
     public Point getCenter() {
@@ -32,6 +37,7 @@ public class Cube {
 
     public void setCenter(Point center) {
         this.center = center;
+        notifyObserver();
     }
 
     public double getEdge() {
@@ -40,10 +46,32 @@ public class Cube {
 
     public void setEdge(double edge) {
         this.edge = edge;
+        notifyObserver();
     }
 
     public long getCubeId() {
         return cubeId;
+    }
+
+    @Override
+    public void attach(CubeObserver observer) {
+        if (observer != null) {
+            observers.add(observer);
+        }
+    }
+
+    @Override
+    public void detach(CubeObserver observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObserver() {
+        if (observers.isEmpty()) {
+            return;
+        }
+        CubeEvent event = new CubeEvent(this);
+        observers.forEach(observer -> observer.parametersChange(event));
     }
 
     @Override

@@ -1,11 +1,13 @@
 package com.epam.task02.service;
 
+import com.epam.task02.entity.Point;
 import com.epam.task02.parser.StringParser;
 import com.epam.task02.parser.impl.StringParserImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StringParserTest {
@@ -79,5 +81,22 @@ public class StringParserTest {
         for (int i = 0; i < result.size(); i++) {
             Assert.assertArrayEquals(expected.get(i), result.get(i),0.000001d);
         }
+    }
+
+    @Test
+    public void testParseToCubePoints() {
+        Point p1 = new Point(0,0,0);
+        Point p2 = new Point(1,0,0);
+        Point p3 = new Point(1,1,0);
+        Point p4 = new Point(0,1,0);
+        Point p5 = new Point(0,0,1);
+        Point p6 = new Point(1,0,1);
+        Point p7 = new Point(1,1,1);
+        Point p8 = new Point(0,1,1);
+        List<Point> expected = new ArrayList<>(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8));
+        String string = "0, 0, 0 - 1, 0, 0 - 1, 1, 0 - 0, 1, 0 - 0, 0, 1 - 1, 0, 1 - 1, 1, 1 - 0, 1, 1";
+        StringParser stringParser = new StringParserImpl();
+        List<Point> result = stringParser.parseToCubePoints(string);
+        Assert.assertEquals(expected, result);
     }
 }
