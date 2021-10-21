@@ -14,7 +14,7 @@ public class CubeFactory {
         return cube;
     }
 
-    public static Cube CreateCube(Point center, double edge) {
+    public static Cube CreateByCenterAndEdge(Point center, double edge) {
         Cube cube = new Cube(center, edge);
 
 //        cube.setPoints();

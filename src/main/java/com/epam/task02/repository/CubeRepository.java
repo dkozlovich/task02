@@ -3,7 +3,6 @@ package com.epam.task02.repository;
 import com.epam.task02.entity.Cube;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -29,6 +28,8 @@ public interface CubeRepository {
     Cube set(int index, Cube element);
 
     List<Cube> query(CubeSpecification specification);
+
+    List<Cube> queryStream(CubeSpecification specification);
 
     List<Cube> sort(Comparator<Cube> comparator);
 }

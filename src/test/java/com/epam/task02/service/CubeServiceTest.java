@@ -21,7 +21,7 @@ public class CubeServiceTest {
     public void testFindSurfaceArea() {
         double edge = 3;
         double expected = 54;
-        Cube cube = CubeFactory.CreateCube(new Point(1,1,1),edge);
+        Cube cube = CubeFactory.CreateByCenterAndEdge(new Point(1,1,1),edge);
         double result = cubeService.findSurfaceArea(cube);
         Assert.assertEquals(expected,result,0.000001d);
     }
@@ -30,7 +30,7 @@ public class CubeServiceTest {
     public void testFindVolume() {
         double edge = 3;
         double expected = 27;
-        Cube cube = CubeFactory.CreateCube(new Point(1,1,1),edge);
+        Cube cube = CubeFactory.CreateByCenterAndEdge(new Point(1,1,1),edge);
         double result = cubeService.findVolume(cube);
         Assert.assertEquals(expected,result,0.000001d);
     }

@@ -1,7 +1,6 @@
 package com.epam.task02.observer.impl;
 
 import com.epam.task02.entity.Cube;
-import com.epam.task02.exception.CubeException;
 import com.epam.task02.observer.CubeEvent;
 import com.epam.task02.observer.CubeObserver;
 import com.epam.task02.service.CubeService;

@@ -3,8 +3,6 @@ package com.epam.task02.repository.impl;
 import com.epam.task02.entity.Cube;
 import com.epam.task02.repository.CubeSpecification;
 
-import java.math.BigDecimal;
-
 public class EdgeSpecification implements CubeSpecification {
     private final double minEdge;
     private final double maxEdge;

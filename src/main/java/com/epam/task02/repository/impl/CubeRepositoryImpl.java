@@ -85,6 +85,11 @@ public class CubeRepositoryImpl implements CubeRepository {
     }
 
     @Override
+    public List<Cube> queryStream(CubeSpecification specification) {
+        return cubes.stream().filter(specification::specify).toList();
+    }
+
+    @Override
     public List<Cube> sort(Comparator<Cube> comparator) {
         cubes.sort(comparator);
         return cubes;
