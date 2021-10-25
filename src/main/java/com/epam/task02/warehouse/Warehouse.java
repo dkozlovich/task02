@@ -40,7 +40,7 @@ public class Warehouse {
     public boolean updateParameters(long cubeId, double surfaceArea, double volume) {
         CubeParameters cubeParameters = this.cubeParameters.get(cubeId);
         if (cubeParameters == null) {
-            logger.error("Cube with such ID is not found.");
+            logger.error("Cube with ID " + cubeId + " is not found.");
             return false;
         }
         cubeParameters.setSurfaceArea(surfaceArea);
