@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public interface CubeRepository {
+
     List<Cube> getCubes();
 
     int size();
@@ -32,4 +33,5 @@ public interface CubeRepository {
     List<Cube> queryStream(CubeSpecification specification);
 
     List<Cube> sort(Comparator<Cube> comparator);
+
 }

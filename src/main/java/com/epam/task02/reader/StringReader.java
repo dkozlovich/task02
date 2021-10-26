@@ -7,4 +7,5 @@ import java.util.List;
 public interface StringReader<T> {
 
     List<String> read(T t) throws CubeException;
+
 }

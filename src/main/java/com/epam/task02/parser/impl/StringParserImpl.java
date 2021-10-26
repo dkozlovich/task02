@@ -21,7 +21,7 @@ public class StringParserImpl implements StringParser {
     @Override
     public double[] parseToCenterAndEdge(String string) {
 
-        if (cubeParametersValidator.isValidCenterAndEdge(string)) {
+        if (cubeParametersValidator.isValidCenterAndEdgeString(string)) {
             String[] stringArray = string.split(DELIMITER_REGEX);
             double[] parameters = new double[stringArray.length];
             for (int i = 0; i < parameters.length; i++) {

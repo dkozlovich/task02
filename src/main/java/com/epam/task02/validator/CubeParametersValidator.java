@@ -6,9 +6,13 @@ import java.util.List;
 
 public interface CubeParametersValidator {
 
-    boolean isValidCenterAndEdge(String centerAndEdge);
+    boolean isValidCenterAndEdgeString(String centerAndEdge);
+
+    boolean isValidCenterAndEdge(Point center, double edge);
 
     boolean isValidPointsString(String points);
 
     boolean isValidPoints(List<Point> points);
+
+    double distanceBetween(Point point1, Point point2);
 }

@@ -30,5 +30,9 @@ public class CubeServiceImpl implements CubeService {
         return volume;
     }
 
-
+    @Override
+    public double findDiagonal(Cube cube) {
+        double diagonal = cube.getEdge() * Math.sqrt(3);
+        return diagonal;
+    }
 }

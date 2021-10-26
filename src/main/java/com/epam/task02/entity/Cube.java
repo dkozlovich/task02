@@ -22,11 +22,6 @@ public class Cube implements Observable {
         this.edge = edge;
     }
 
-    public Cube(List<Point> points) {
-        this.points = points;
-        this.cubeId = IdGenerator.generateId();
-    }
-
     public List<Point> getPoints() {
         return points;
     }
@@ -81,7 +76,6 @@ public class Cube implements Observable {
 
         Cube cube = (Cube) o;
 
-        if (cubeId != cube.cubeId) return false;
         if (Double.compare(cube.edge, edge) != 0) return false;
         return center != null ? center.equals(cube.center) : cube.center == null;
     }
@@ -90,10 +84,18 @@ public class Cube implements Observable {
     public int hashCode() {
         int result;
         long temp;
-        result = (int) (cubeId ^ (cubeId >>> 32));
-        result = 31 * result + (center != null ? center.hashCode() : 0);
+        result = center != null ? center.hashCode() : 0;
         temp = Double.doubleToLongBits(edge);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("CubeId = ").append(cubeId);
+        stringBuilder.append(", center = ").append(center);
+        stringBuilder.append(", edge = ").append(edge);
+        return stringBuilder.toString();
     }
 }

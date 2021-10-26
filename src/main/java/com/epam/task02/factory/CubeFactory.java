@@ -5,20 +5,10 @@ import com.epam.task02.entity.Point;
 
 import java.util.List;
 
-public class CubeFactory {
+public interface CubeFactory {
 
-    public static Cube createByPoints(List<Point> points) {
-        Cube cube = new Cube(points);
-//        cube.setCenter();
-//        cube.setEdge();
-        return cube;
-    }
+    Cube createByPoints(List<Point> points);
 
-    public static Cube CreateByCenterAndEdge(Point center, double edge) {
-        Cube cube = new Cube(center, edge);
-
-//        cube.setPoints();
-        return cube;
-    }
+    Cube createByCenterAndEdge(Point center, double edge);
 
 }

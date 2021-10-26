@@ -18,7 +18,7 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private static final int POINTS_OF_ONE_CUBE_SIDE = 4;
+    private static final int NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE = 4;
 
     private static CubeParametersValidator instance;
 
@@ -34,12 +34,21 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
     }
 
     @Override
-    public boolean isValidCenterAndEdge(String centerAndEdge) {
+    public boolean isValidCenterAndEdgeString(String centerAndEdge) {
         Pattern pattern = Pattern.compile(CENTER_AND_EDGE_REGEX);
         Matcher matcher = pattern.matcher(centerAndEdge);
         boolean result = matcher.matches();
         logger.info(String.format("Result of validation : %s. String: %s.", result, centerAndEdge));
         return result;
+    }
+
+    @Override
+    public boolean isValidCenterAndEdge(Point center, double edge) {
+        if (center != null && edge > 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -64,13 +73,13 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
                 pointsAtFirstYOZCubeSideList.add(points.get(i));
             }
         }
-        if (pointsAtFirstYOZCubeSideList.size() != POINTS_OF_ONE_CUBE_SIDE) {
+        if (pointsAtFirstYOZCubeSideList.size() != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE) {
             logger.info(String.format("Result of validation : false. Points: %s. ", points));
             return false;
         }
         double edge = 0;
-        for (int i = 0; i < POINTS_OF_ONE_CUBE_SIDE; i++) {
-            for (int j = 0; j < POINTS_OF_ONE_CUBE_SIDE; j++) {
+        for (int i = 0; i < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; i++) {
+            for (int j = 0; j < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; j++) {
                 if (pointsAtFirstYOZCubeSideList.get(i).getY() == pointsAtFirstYOZCubeSideList.get(j).getY()
                         && pointsAtFirstYOZCubeSideList.get(i).getZ() != pointsAtFirstYOZCubeSideList.get(j).getZ()) {
                     edge = distanceBetween(pointsAtFirstYOZCubeSideList.get(i), pointsAtFirstYOZCubeSideList.get(j));
@@ -78,8 +87,8 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
             }
         }
         int validPointOfYOZSide = 0;
-        for (int i = 0; i < POINTS_OF_ONE_CUBE_SIDE; i++) {
-            for (int j = 0; j < POINTS_OF_ONE_CUBE_SIDE; j++) {
+        for (int i = 0; i < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; i++) {
+            for (int j = 0; j < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; j++) {
                 if (pointsAtFirstYOZCubeSideList.get(i).getY() == pointsAtFirstYOZCubeSideList.get(j).getY()
                         && pointsAtFirstYOZCubeSideList.get(i).getZ() != pointsAtFirstYOZCubeSideList.get(j).getZ()
                         && distanceBetween(pointsAtFirstYOZCubeSideList.get(i), pointsAtFirstYOZCubeSideList.get(j)) == edge) {
@@ -93,7 +102,7 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
 
             }
         }
-        if (validPointOfYOZSide != POINTS_OF_ONE_CUBE_SIDE * 2) {
+        if (validPointOfYOZSide != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE * 2) {
             logger.info(String.format("Result of validation : false. Points: %s. ", points));
             return false;
         }
@@ -101,8 +110,8 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
         List<Point> pointsAtSecondYOZCubeSideList = new ArrayList<>(List.copyOf(points));
         pointsAtSecondYOZCubeSideList.removeAll(pointsAtFirstYOZCubeSideList);
         validPointOfYOZSide = 0;
-        for (int i = 0; i < POINTS_OF_ONE_CUBE_SIDE; i++) {
-            for (int j = 0; j < POINTS_OF_ONE_CUBE_SIDE; j++) {
+        for (int i = 0; i < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; i++) {
+            for (int j = 0; j < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; j++) {
                 if (pointsAtSecondYOZCubeSideList.get(i).getY() == pointsAtSecondYOZCubeSideList.get(j).getY()
                         && pointsAtSecondYOZCubeSideList.get(i).getZ() != pointsAtSecondYOZCubeSideList.get(j).getZ()
                         && distanceBetween(pointsAtSecondYOZCubeSideList.get(i),pointsAtSecondYOZCubeSideList.get(j)) == edge) {
@@ -116,13 +125,13 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
 
             }
         }
-        if (validPointOfYOZSide != POINTS_OF_ONE_CUBE_SIDE * 2) {
+        if (validPointOfYOZSide != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE * 2) {
             logger.info(String.format("Result of validation : false. Points: %s. ", points));
             return false;
         }
         int edgesBetweenFirstAndSecond = 0;
-        for (int i = 0; i < POINTS_OF_ONE_CUBE_SIDE; i++) {
-            for (int j = 0; j < POINTS_OF_ONE_CUBE_SIDE; j++) {
+        for (int i = 0; i < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; i++) {
+            for (int j = 0; j < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; j++) {
                 if (distanceBetween(pointsAtFirstYOZCubeSideList.get(i), pointsAtSecondYOZCubeSideList.get(j)) == edge) {
                     edgesBetweenFirstAndSecond++;
                     if (pointsAtFirstYOZCubeSideList.get(i).getY() != pointsAtSecondYOZCubeSideList.get(j).getY()
@@ -133,7 +142,7 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
                 }
             }
         }
-        if (edgesBetweenFirstAndSecond != POINTS_OF_ONE_CUBE_SIDE) {
+        if (edgesBetweenFirstAndSecond != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE) {
             logger.info(String.format("Result of validation : false. Points: %s. ", points));
             return false;
         }
@@ -141,7 +150,7 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
         return true;
     }
 
-    private double distanceBetween(Point p1, Point p2) {
-        return Math.sqrt(Math.pow(p1.getX() - p2.getX(), 2) + Math.pow(p1.getY() - p2.getY(), 2) + Math.pow(p1.getZ() - p2.getZ(), 2));
+    public double distanceBetween(Point p1, Point point2) {
+        return Math.sqrt(Math.pow(p1.getX() - point2.getX(), 2) + Math.pow(p1.getY() - point2.getY(), 2) + Math.pow(p1.getZ() - point2.getZ(), 2));
     }
 }

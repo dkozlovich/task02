@@ -6,6 +6,7 @@ import com.epam.task02.observer.CubeObserver;
 import com.epam.task02.service.CubeService;
 import com.epam.task02.service.impl.CubeServiceImpl;
 import com.epam.task02.warehouse.Warehouse;
+import com.epam.task02.warehouse.impl.WarehouseImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,7 +20,12 @@ public class CubeObserverImpl implements CubeObserver {
         Cube cube = event.getSource();
         double surfaceArea = cubeService.findSurfaceArea(cube);
         double volume = cubeService.findVolume(cube);
-        Warehouse warehouse = Warehouse.getInstance();
-        warehouse.updateParameters(cube.getCubeId(), surfaceArea, volume);
+        double diagonal = cubeService.findDiagonal(cube);
+        Warehouse warehouse = WarehouseImpl.getInstance();
+        if (warehouse.updateParameters(cube.getCubeId(), volume, surfaceArea, diagonal)) {
+            logger.info("Warehouse was updated. Cube: " + cube);
+        } else {
+            logger.error("Warehouse is not updated. Cube: " + cube);
+        }
     }
 }

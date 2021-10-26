@@ -66,12 +66,12 @@ public class Point implements Cloneable {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{");
-        sb.append("x=").append(x);
-        sb.append(", y=").append(y);
-        sb.append(", z=").append(z);
-        sb.append('}');
-        return sb.toString();
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("{");
+        stringBuilder.append("x=").append(x);
+        stringBuilder.append(", y=").append(y);
+        stringBuilder.append(", z=").append(z);
+        stringBuilder.append('}');
+        return stringBuilder.toString();
     }
 }

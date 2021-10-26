@@ -16,7 +16,7 @@ public class CubeParametersValidatorTest {
 
     @Test
     public void validateCenterAndEdgeTest() {
-        boolean result = cubeParametersValidator.isValidCenterAndEdge("10, -12.2189 - 3.11 36.88");
+        boolean result = cubeParametersValidator.isValidCenterAndEdgeString("10, -12.2189 - 3.11 36.88");
         Assert.assertTrue(result);
     }
 

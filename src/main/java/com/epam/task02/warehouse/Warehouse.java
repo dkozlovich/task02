@@ -1,50 +1,13 @@
 package com.epam.task02.warehouse;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+public interface Warehouse {
 
-import java.util.HashMap;
-import java.util.Map;
+    void putParameters(long cubeId, double volume, double surfaceArea, double diagonal);
 
-public class Warehouse {
-    private static final Logger logger = LogManager.getLogger();
-    private static Warehouse instance;
-    private final Map<Long, CubeParameters> cubeParameters;
+    void putParameters(long cubeId, CubeParameters cubeParameters);
 
-    private Warehouse() {
-        cubeParameters = new HashMap<>();
-    }
+    CubeParameters getParameters(long cubeId);
 
-    public static Warehouse getInstance() {
-        if (instance == null) {
-            instance = new Warehouse();
-        }
-        return instance;
-    }
+    boolean updateParameters(long cubeId, double volume, double surfaceArea, double diagonal);
 
-    public void putParameters(long cubeId, double surfaceArea, double volume) {
-        CubeParameters cubeParameters = new CubeParameters();
-        cubeParameters.setSurfaceArea(surfaceArea);
-        cubeParameters.setVolume(volume);
-        this.cubeParameters.put(cubeId, cubeParameters);
-    }
-
-    public void putParameters(long cubeId, CubeParameters cubeParameters) {
-        this.cubeParameters.put(cubeId, cubeParameters);
-    }
-
-    public CubeParameters getParameters(long cubeId) {
-        return cubeParameters.get(cubeId);
-    }
-
-    public boolean updateParameters(long cubeId, double surfaceArea, double volume) {
-        CubeParameters cubeParameters = this.cubeParameters.get(cubeId);
-        if (cubeParameters == null) {
-            logger.error("Cube with ID " + cubeId + " is not found.");
-            return false;
-        }
-        cubeParameters.setSurfaceArea(surfaceArea);
-        cubeParameters.setVolume(volume);
-        return true;
-    }
 }
