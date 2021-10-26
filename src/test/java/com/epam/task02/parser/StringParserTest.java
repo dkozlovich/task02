@@ -1,4 +1,4 @@
-package com.epam.task02.service;
+package com.epam.task02.parser;
 
 import com.epam.task02.entity.Point;
 import com.epam.task02.parser.StringParser;

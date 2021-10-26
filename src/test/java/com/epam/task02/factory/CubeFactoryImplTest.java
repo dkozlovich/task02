@@ -1,4 +1,4 @@
-package com.epam.task02.service;
+package com.epam.task02.factory;
 
 import com.epam.task02.entity.Cube;
 import com.epam.task02.entity.Point;
