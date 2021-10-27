@@ -26,6 +26,10 @@ public class Cube implements Observable {
         return points;
     }
 
+    public void setCubeId(long cubeId) {
+        this.cubeId = cubeId;
+    }
+
     public Point getCenter() {
         return center;
     }

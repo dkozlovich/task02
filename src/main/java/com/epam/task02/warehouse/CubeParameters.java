@@ -6,7 +6,9 @@ public class CubeParameters {
     private double diagonal;
 
     public CubeParameters(double volume, double surfaceArea, double diagonal) {
-
+        this.volume = volume;
+        this.surfaceArea = surfaceArea;
+        this.diagonal = diagonal;
     }
 
     public double getSurfaceArea() {

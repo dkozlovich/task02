@@ -1,5 +1,7 @@
 package com.epam.task02.warehouse.impl;
 
+import com.epam.task02.entity.Cube;
+import com.epam.task02.filler.WarehouseFiller;
 import com.epam.task02.warehouse.CubeParameters;
 import com.epam.task02.warehouse.Warehouse;
 import org.apache.logging.log4j.LogManager;
@@ -12,6 +14,7 @@ public class WarehouseImpl implements Warehouse {
     private static final Logger logger = LogManager.getLogger();
     private static WarehouseImpl instance;
     private final Map<Long, CubeParameters> cubeParameters;
+
 
     private WarehouseImpl() {
         cubeParameters = new HashMap<>();
@@ -53,5 +56,21 @@ public class WarehouseImpl implements Warehouse {
         cubeParameters.setVolume(volume);
         cubeParameters.setDiagonal(diagonal);
         return true;
+    }
+
+    @Override
+    public void updateParameters(Cube cube) {
+        WarehouseFiller filler = new WarehouseFiller();
+        filler.fillWarehouse(cube);
+    }
+
+    @Override
+    public CubeParameters removeParameters(long id) {
+        return cubeParameters.remove(id);
+    }
+
+    @Override
+    public Map<Long, CubeParameters> getWarehouse() {
+        return new HashMap<Long, CubeParameters>(cubeParameters);
     }
 }

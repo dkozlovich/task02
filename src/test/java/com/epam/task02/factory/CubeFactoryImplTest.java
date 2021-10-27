@@ -17,8 +17,8 @@ public class CubeFactoryImplTest {
 
     @Test
     public void testCreateByCenterAndEdge() {
-        Cube expected = new Cube(new Point(1,1,1), 15);
-        Cube result = cubeFactoryImpl.createByCenterAndEdge(new Point(1,1,1), 15);
+        Cube expected = new Cube(new Point(10,10,10), 15);
+        Cube result = cubeFactoryImpl.createByCenterAndEdge(new Point(10,10,10), 15);
         Assert.assertEquals(expected, result);
     }
 

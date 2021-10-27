@@ -27,7 +27,7 @@ public class CubeServiceTest {
         double expected = 54;
         Cube cube = cubeFactory.createByCenterAndEdge(new Point(1,1,1),edge);
         double result = cubeService.findSurfaceArea(cube);
-        Assert.assertEquals(expected,result,0.000001d);
+        Assert.assertEquals(expected, result,0.000001d);
     }
 
     @Test
@@ -36,6 +36,15 @@ public class CubeServiceTest {
         double expected = 27;
         Cube cube = cubeFactory.createByCenterAndEdge(new Point(1,1,1),edge);
         double result = cubeService.findVolume(cube);
-        Assert.assertEquals(expected,result,0.000001d);
+        Assert.assertEquals(expected, result,0.000001d);
+    }
+
+    @Test
+    public void testFindDiagonal() {
+        double edge = 5;
+        double expected = 8.660254;
+        Cube cube = cubeFactory.createByCenterAndEdge(new Point(1,1,1),edge);
+        double result = cubeService.findDiagonal(cube);
+        Assert.assertEquals(expected, result, 0.001d);
     }
 }

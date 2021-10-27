@@ -3,6 +3,9 @@ package com.epam.task02.service.impl;
 import com.epam.task02.entity.Cube;
 import com.epam.task02.service.CubeService;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class CubeServiceImpl implements CubeService {
 
     private static CubeService instance;
@@ -33,6 +36,6 @@ public class CubeServiceImpl implements CubeService {
     @Override
     public double findDiagonal(Cube cube) {
         double diagonal = cube.getEdge() * Math.sqrt(3);
-        return diagonal;
+        return (BigDecimal.valueOf(diagonal).setScale(3, RoundingMode.HALF_UP).doubleValue());
     }
 }
