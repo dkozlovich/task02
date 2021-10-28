@@ -10,4 +10,5 @@ public interface CubeService {
 
     double findDiagonal(Cube cube);
 
+    boolean isShapeOnTheAxis(Cube cube);
 }

@@ -47,4 +47,11 @@ public class CubeServiceTest {
         double result = cubeService.findDiagonal(cube);
         Assert.assertEquals(expected, result, 0.001d);
     }
+
+    @Test
+    public void testIsShapeOnTheAxis() {
+        Cube cube = cubeFactory.createByCenterAndEdge(new Point(10,15,40),20);
+        boolean result = cubeService.isShapeOnTheAxis(cube);
+        Assert.assertTrue(result);
+    }
 }

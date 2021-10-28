@@ -16,6 +16,8 @@ public interface Warehouse {
 
     void updateParameters(Cube cube);
 
+    void removeAllParameters();
+
     CubeParameters removeParameters(long id);
 
     Map<Long, CubeParameters> getWarehouse();

@@ -1,7 +1,6 @@
-package com.epam.task02.service;
+package com.epam.task02.reader;
 
 import com.epam.task02.exception.CubeException;
-import com.epam.task02.reader.StringReader;
 import com.epam.task02.reader.impl.StringFilePathReaderImpl;
 import org.junit.Assert;
 import org.junit.Test;

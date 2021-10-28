@@ -1,7 +1,6 @@
 package com.epam.task02.validator;
 
 import com.epam.task02.entity.Point;
-import com.epam.task02.validator.CubeParametersValidator;
 import com.epam.task02.validator.impl.CubeParametersValidatorImpl;
 import org.junit.Assert;
 import org.junit.Test;

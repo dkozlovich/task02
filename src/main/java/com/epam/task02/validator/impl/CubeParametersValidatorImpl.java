@@ -68,64 +68,31 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
     public boolean isValidPoints(List<Point> points) {
         int xOfFirstPoint = (int) points.get(0).getX();
         List<Point> pointsAtFirstYOZCubeSideList = new ArrayList<>();
+        List<Point> pointsAtSecondYOZCubeSideList = new ArrayList<>();
         for (int i = 0; i < points.size(); i++) {
             if (points.get(i).getX() == xOfFirstPoint) {
                 pointsAtFirstYOZCubeSideList.add(points.get(i));
+            } else {
+                pointsAtSecondYOZCubeSideList.add(points.get(i));
             }
         }
-        if (pointsAtFirstYOZCubeSideList.size() != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE) {
+        if (pointsAtFirstYOZCubeSideList.size() != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE
+                || pointsAtSecondYOZCubeSideList.size() != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE) {
             logger.info(String.format("Result of validation : false. Points: %s. ", points));
             return false;
         }
-        double edge = 0;
-        for (int i = 0; i < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; i++) {
-            for (int j = 0; j < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; j++) {
-                if (pointsAtFirstYOZCubeSideList.get(i).getY() == pointsAtFirstYOZCubeSideList.get(j).getY()
-                        && pointsAtFirstYOZCubeSideList.get(i).getZ() != pointsAtFirstYOZCubeSideList.get(j).getZ()) {
-                    edge = distanceBetween(pointsAtFirstYOZCubeSideList.get(i), pointsAtFirstYOZCubeSideList.get(j));
-                }
-            }
-        }
-        int validPointOfYOZSide = 0;
-        for (int i = 0; i < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; i++) {
-            for (int j = 0; j < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; j++) {
-                if (pointsAtFirstYOZCubeSideList.get(i).getY() == pointsAtFirstYOZCubeSideList.get(j).getY()
-                        && pointsAtFirstYOZCubeSideList.get(i).getZ() != pointsAtFirstYOZCubeSideList.get(j).getZ()
-                        && distanceBetween(pointsAtFirstYOZCubeSideList.get(i), pointsAtFirstYOZCubeSideList.get(j)) == edge) {
-                    validPointOfYOZSide++;
-                }
-                if (pointsAtFirstYOZCubeSideList.get(i).getZ() == pointsAtFirstYOZCubeSideList.get(j).getZ()
-                        && pointsAtFirstYOZCubeSideList.get(i).getY() != pointsAtFirstYOZCubeSideList.get(j).getY()
-                        && distanceBetween(pointsAtFirstYOZCubeSideList.get(i), pointsAtFirstYOZCubeSideList.get(j)) == edge) {
-                    validPointOfYOZSide++;
-                }
+        double edge = calculateEdge(pointsAtFirstYOZCubeSideList);
 
-            }
-        }
-        if (validPointOfYOZSide != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE * 2) {
+        int validPointOfYOZSide = countValidPointOfOneCubeSide(pointsAtFirstYOZCubeSideList, edge);
+
+        if (validPointOfYOZSide != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE) {
             logger.info(String.format("Result of validation : false. Points: %s. ", points));
             return false;
         }
 
-        List<Point> pointsAtSecondYOZCubeSideList = new ArrayList<>(List.copyOf(points));
-        pointsAtSecondYOZCubeSideList.removeAll(pointsAtFirstYOZCubeSideList);
-        validPointOfYOZSide = 0;
-        for (int i = 0; i < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; i++) {
-            for (int j = 0; j < NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE; j++) {
-                if (pointsAtSecondYOZCubeSideList.get(i).getY() == pointsAtSecondYOZCubeSideList.get(j).getY()
-                        && pointsAtSecondYOZCubeSideList.get(i).getZ() != pointsAtSecondYOZCubeSideList.get(j).getZ()
-                        && distanceBetween(pointsAtSecondYOZCubeSideList.get(i),pointsAtSecondYOZCubeSideList.get(j)) == edge) {
-                    validPointOfYOZSide++;
-                }
-                if (pointsAtSecondYOZCubeSideList.get(i).getZ() == pointsAtSecondYOZCubeSideList.get(j).getZ()
-                        && pointsAtSecondYOZCubeSideList.get(i).getY() != pointsAtSecondYOZCubeSideList.get(j).getY()
-                        && distanceBetween(pointsAtSecondYOZCubeSideList.get(i),pointsAtSecondYOZCubeSideList.get(j)) == edge) {
-                    validPointOfYOZSide++;
-                }
+        validPointOfYOZSide = countValidPointOfOneCubeSide(pointsAtSecondYOZCubeSideList, edge);
 
-            }
-        }
-        if (validPointOfYOZSide != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE * 2) {
+        if (validPointOfYOZSide != NUMBER_OF_POINTS_AT_ONE_CUBE_SIDE) {
             logger.info(String.format("Result of validation : false. Points: %s. ", points));
             return false;
         }
@@ -148,6 +115,36 @@ public class CubeParametersValidatorImpl implements CubeParametersValidator {
         }
         logger.info(String.format("Result of validation : true. Points: %s. ", points));
         return true;
+    }
+
+    private double calculateEdge(List<Point> points) {
+        double result = 0;
+        for (int i = 0; i < points.size(); i++) {
+            for (int j = 0; j < points.size(); j++) {
+                if (points.get(i).getY() == points.get(j).getY() && points.get(i).getZ() != points.get(j).getZ()) {
+                    result = distanceBetween(points.get(i), points.get(j));
+                }
+            }
+        }
+        return result;
+    }
+
+    private int countValidPointOfOneCubeSide(List<Point> points, double edge) {
+        int validPointOfYOZSide = 0;
+        for (int i = 0; i < points.size(); i++) {
+            for (int j = 0; j < points.size(); j++) {
+                if (points.get(i).getY() == points.get(j).getY() && points.get(i).getZ() != points.get(j).getZ()
+                        && distanceBetween(points.get(i), points.get(j)) == edge) {
+                    validPointOfYOZSide++;
+                }
+                if (points.get(i).getZ() == points.get(j).getZ() && points.get(i).getY() != points.get(j).getY()
+                        && distanceBetween(points.get(i), points.get(j)) == edge) {
+                    validPointOfYOZSide++;
+                }
+
+            }
+        }
+        return validPointOfYOZSide / 2;
     }
 
     public double distanceBetween(Point p1, Point point2) {

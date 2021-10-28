@@ -1,7 +1,6 @@
 package com.epam.task02.parser;
 
 import com.epam.task02.entity.Point;
-import com.epam.task02.parser.StringParser;
 import com.epam.task02.parser.impl.StringParserImpl;
 import org.junit.Assert;
 import org.junit.Test;

@@ -2,7 +2,6 @@ package com.epam.task02.factory;
 
 import com.epam.task02.entity.Cube;
 import com.epam.task02.entity.Point;
-import com.epam.task02.factory.CubeFactory;
 import com.epam.task02.factory.impl.CubeFactoryImpl;
 import org.junit.Assert;
 import org.junit.Test;

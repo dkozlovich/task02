@@ -11,7 +11,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WarehouseTest {
-    private Warehouse warehouse;
+
+    private Warehouse warehouse = WarehouseImpl.getInstance();;
     private Map<Long,CubeParameters> expectedMap;
     private CubeParameters expectedParameters;
     private CubeParameters parameters;
@@ -19,7 +20,7 @@ public class WarehouseTest {
 
     @Before
     public void init() {
-        warehouse = WarehouseImpl.getInstance();
+        warehouse.removeAllParameters();
         expectedMap = new HashMap<>();
         parameters = new CubeParameters(27, 54, 5.196152);
         expectedParameters = new CubeParameters(27, 54, 5.196152);

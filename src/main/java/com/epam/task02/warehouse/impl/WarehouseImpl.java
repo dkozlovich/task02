@@ -70,6 +70,11 @@ public class WarehouseImpl implements Warehouse {
     }
 
     @Override
+    public void removeAllParameters() {
+        cubeParameters.clear();
+    }
+
+    @Override
     public Map<Long, CubeParameters> getWarehouse() {
         return new HashMap<Long, CubeParameters>(cubeParameters);
     }
